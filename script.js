@@ -1,12 +1,12 @@
 const option1 = document.getElementById('option1')
 const option2 = document.getElementById('option2')
 const result = document.getElementById('result');
+const questionContainer = document.getElementById('question-set');
+const stage = document.getElementById('stage-name');
 
 // function displayResult()
 
 // option1.addEventListener('click', result)
-const step2info1 = "It's text."
-const step2info2 = "More text gracious"
 
 // function nextStep(text) {
 //     const elem = document.getElementById('result');
@@ -16,9 +16,11 @@ const step2info2 = "More text gracious"
 // option1.addEventListener('click', nextStep(step2info));
 
 option1.onclick = function() {
-    result.textContent = step2info1;
+    stage.textContent = 'stage 2A';
+    option1.textContent = 'option 3';
+    // document.getElementById("stage2a").style.display="block";
 }
 
 option2.onclick = function() {
-    result.textContent = step2info2;
+    result.textContent = "We have text ladies and gentlemen";
 }
