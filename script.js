@@ -8,9 +8,9 @@ const question = document.getElementById('question');
 
 var qObject =
 {
-    q1: {text: 'Is your fruit sweet or sour?', answer1: {text: 'Sweet', nextQuestion: 'q2'}, answer2: {text: 'Sour', nextQuestion: 'q3'}},
-    q2: {text: 'Is your fruit an apple', answer1: {text: 'Yes', nextQuestion: ''}, answer2: {text: 'No', nextQuestion: ''}},
-    q3: {text: 'Is your fruit a lemon', answer1: {text: 'Yes', nextQuestion: ''}, answer2: {text: 'No', nextQuestion: ''}},
+    q1: {text: 'What issue does your plant have?', answer1: {text: "It's wilty", nextQuestion: 'q2'}, answer2: {text: 'Something else', nextQuestion: '', response: "This key may not be able to diagnose your issue. You can try posting to 'reddit.com/r/plantclinic'."}},
+    q2: {text: "Does your plant perk up when you water it?", answer1: {text: 'Yes', nextQuestion: '', response: "Your plant is likely underwatered."}, answer2: {text: 'No', nextQuestion: 'q3'}},
+    q3: {text: 'Does your pot have drainage?', answer1: {text: 'Yes', nextQuestion: '', response: "Water your plant when the top 2 inches of soil are dry."}, answer2: {text: 'No', nextQuestion: '', response: "Water your plant when it's amost completely dry."}},
 }
 
 function setQuestion(questionNumber) {
@@ -26,13 +26,23 @@ let currentQuestion = 'q1';
 
 
 option1.onclick = function() {
-    setQuestion(qObject[currentQuestion].answer1.nextQuestion);
-    currentQuestion = qObject[currentQuestion].answer1.nextQuestion;
+    if (qObject[currentQuestion].answer1.response) {
+        questionContainer.style.visibility = 'hidden';
+        result.textContent = qObject[currentQuestion].answer1.response;
+    } else {
+        setQuestion(qObject[currentQuestion].answer1.nextQuestion);
+        currentQuestion = qObject[currentQuestion].answer1.nextQuestion;
+    }  
 }
 
 option2.onclick = function() {
-    setQuestion(qObject[currentQuestion].answer2.nextQuestion);
-    currentQuestion = qObject[currentQuestion].answer2.nextQuestion;
+    if (qObject[currentQuestion].answer2.response) {
+        questionContainer.style.visibility = 'hidden';
+        result.textContent = qObject[currentQuestion].answer2.response;
+    } else {
+        setQuestion(qObject[currentQuestion].answer2.nextQuestion);
+        currentQuestion = qObject[currentQuestion].answer2.nextQuestion;
+    } 
 }
 
 /* option1.onclick = setQuestion(q2);
