@@ -1,3 +1,21 @@
-/* #stage2a {
-    display: none;
+/* 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 } */
+
+#plant-type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.plant-block {
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 6px;
+}

@@ -9,6 +9,9 @@ const startOver = document.getElementById("startOver");
 
 const underwateredSucc = "Succulents don't like to sit in moist soil, and prefer to dry out completely between watering. But even they like to get a good drink on a regular basis. If the potting mix is so dry that water beads up and rolls off, set the whole pot in a sink full of water. You may have to put something heavy on top to keep in submerged. Give it 30 minutes before letting it drain. You can water exactly like this every time. If the plant doesn't perk up after this, underwatering isn't your problem."
 
+
+
+
 var qObject =
 {
     q1: {text: 'What issue does your plant have?', answer1: {text: "It's wilty", nextQuestion: 'q2'}, answer2: {text: 'Something else', nextQuestion: '', response: "This key may not be able to diagnose your issue. You can try posting to 'reddit.com/r/plantclinic'."}},
