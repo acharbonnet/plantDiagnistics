@@ -4,6 +4,14 @@ const result = document.getElementById('result');
 const questionContainer = document.getElementById('question-set');
 const question = document.getElementById('question');
 const startOver = document.getElementById("startOver");
+const plantSelect = document.getElementById("plant-select");
+//I can probably turn all these buttons into objects that hold plant type and then write one function about it.
+const tropicalButton = document.getElementById("tropical");
+const temperateButton = document.getElementById("temperate");
+const succulentButton = document.getElementById("succulent");
+const herbButton = document.getElementById("herb");
+const declarePlant = document.getElementById("declare-plant");
+let plantType = "";
 
 // q: {text: '', answer1: {text: '', nextQuestion: ''}, answer2: {text: '', nextQuestion: ''}},
 
@@ -27,7 +35,29 @@ function setQuestion(questionNumber) {
     option2.textContent  = qObject[questionNumber].answer2.text;
 
   }
-  
+
+//I realize this isn't very dry, it's largely a proof of concept.
+temperateButton.onclick = function() {
+    declarePlant.innerHTML = "Your plant is <b>Temperate</b>"
+    plantType = "More water";
+    alert(plantType);
+}
+tropicalButton.onclick = function() {
+    declarePlant.innerHTML = "Your plant is <b>Tropical</b>"
+    plantType = "More water";
+    alert(plantType);
+}
+succulentButton.onclick = function() {
+    declarePlant.innerHTML = "Your plant is <b>Succulent</b>"
+    plantType = "Less water";
+    alert(plantType);
+}
+herbButton.onclick = function() {
+    declarePlant.innerHTML = "Your plant is <b>an Herb</b>"
+    plantType = "More water";
+    alert(plantType);
+}
+
 
 setQuestion('q1');
 let currentQuestion = 'q1';
