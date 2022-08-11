@@ -1,4 +1,4 @@
-const option1 = document.getElementById('option1')
+//const option1 = document.getElementById('option1')
 const option2 = document.getElementById('option2')
 const result = document.getElementById('result');
 const questionContainer = document.getElementById('question-set');
@@ -31,9 +31,9 @@ var qObject =
 function setQuestion(questionNumber) {
     // Setting question 1 on page load
     question.textContent = qObject[questionNumber].text;
-    option1.textContent  = qObject[questionNumber].answer1.text;
+    $("#option1").text(qObject[questionNumber].answer1.text);
     option2.textContent  = qObject[questionNumber].answer2.text;
-
+    alert("Hey")
   }
 
 //I realize this isn't very dry, it's largely a proof of concept.
@@ -63,7 +63,7 @@ setQuestion('q1');
 let currentQuestion = 'q1';
 
 
-option1.onclick = function() {
+$("#option1").click(function() {
     if (qObject[currentQuestion].answer1.response) {
         questionContainer.style.visibility = 'hidden';
         result.textContent = qObject[currentQuestion].answer1.response;
@@ -71,7 +71,7 @@ option1.onclick = function() {
         setQuestion(qObject[currentQuestion].answer1.nextQuestion);
         currentQuestion = qObject[currentQuestion].answer1.nextQuestion;
     }  
-}
+})
 
 option2.onclick = function() {
     if (qObject[currentQuestion].answer2.response) {
