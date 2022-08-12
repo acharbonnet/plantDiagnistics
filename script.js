@@ -1,4 +1,4 @@
-const option1 = document.getElementById('option1')
+//const option1 = document.getElementById('option1')
 const option2 = document.getElementById('option2')
 const result = document.getElementById('result');
 const questionContainer = document.getElementById('question-set');
@@ -36,6 +36,13 @@ const herb = createPlantType("herb", "more","Water when the top 2-3 inches of po
 const underwateredSucc = "Succulents don't like to sit in moist soil, and prefer to dry out completely between watering. But even they like to get a good drink on a regular basis. If the potting mix is so dry that water beads up and rolls off, set the whole pot in a sink full of water. You may have to put something heavy on top to keep in submerged. Give it 30 minutes before letting it drain. You can water exactly like this every time. If the plant doesn't perk up after this, underwatering isn't your problem."
 
 
+var currentPlant = {
+    type: 0,
+    schedule: true,
+    currentMoisture: 0
+}
+
+
 
 
 var qObject =
@@ -46,73 +53,81 @@ var qObject =
     //I'm beginning to think I need to ask the user what kind of plant they have first.
 }
 
-function setQuestion(questionNumber) {
-    // Setting question 1 on page load
-    question.textContent = qObject[questionNumber].text;
-    option1.textContent  = qObject[questionNumber].answer1.text;
-    option2.textContent  = qObject[questionNumber].answer2.text;
+var qTexts = [
+    "Do you water on a schedule?",
+    "Stick your finger in soil at least two inches. At what point do you feel moisture?",
+    'It seems as though your plant may be getting too much water. Does your pot have drainage?'
+]
 
+
+var buttonArray = [
+    "Completely Dry", "Wet about an inch down", "Completely wet"
+]
+
+let currentQuestion = 0;
+
+function setQuestion(currentQuestion) {
+    // Setting question 1 on page load
+    question.textContent = qTexts[currentQuestion];
+    $("#options").empty();
+    switch(currentQuestion) {
+        case 0:
+            $("#options").append("<button value=0>Yes</button>");
+            $("#options").append("<button value=1>No</button>");
+            break;
+        case 1:
+            for (button in buttonArray) {
+                $("#options").append("<button value="+button+">"+buttonArray[button]+"</button>")
+            } 
+        default:
+            alert("I shouldn't be here!!!!")
+    }
+
+    
   }
 
-function setPlantType()
+
+function answerHandler(answer) {
+    switch(currentQuestion) {
+        case 0:
+            if (answer == 0) {
+                currentPlant.schedule = true;
+                currentQuestion++;
+                setQuestion(currentQuestion);
+            } else {
+                currentPlant.schedule = false;
+                currentQuestion++;
+                currentQuestion++;
+                setQuestion(currentQuestion);
+            }
+    }
+}
+
 
 //I realize this isn't very dry, it's largely a proof of concept.
-// temperateButton.onclick = function() {
-//     declarePlant.innerHTML = "Your plant is <b>Temperate</b>"
-//     plantType = "More water";
-//     alert(plantType);
-// }
-// tropicalButton.onclick = function() {
-//     declarePlant.innerHTML = "Your plant is <b>Tropical</b>"
-//     plantType = "More water";
-//     alert(plantType);
-// }
-// succulentButton.onclick = function() {
-//     declarePlant.innerHTML = "Your plant is <b>Succulent</b>"
-//     plantType = "Less water";
-//     alert(plantType);
-// }
-// herbButton.onclick = function() {
-//     declarePlant.innerHTML = "Your plant is <b>an Herb</b>"
-//     plantType = "More water";
-//     alert(plantType);
-// }
-let plantTypeSelection = "";
-
-function plantUserInput() {
-
-};
 
 
-setQuestion('q1');
-let currentQuestion = 'q1';
+
+$('#plant-types').change(function() {
+    currentPlant.type = $('#plant-types').val()
+    alert(currentPlant.type)
+})
 
 
-option1.onclick = function() {
-    if (qObject[currentQuestion].answer1.response) {
-        questionContainer.style.visibility = 'hidden';
-        result.textContent = qObject[currentQuestion].answer1.response;
-    } else {
-        setQuestion(qObject[currentQuestion].answer1.nextQuestion);
-        currentQuestion = qObject[currentQuestion].answer1.nextQuestion;
-    }  
-}
+setQuestion(currentQuestion);
 
-option2.onclick = function() {
-    if (qObject[currentQuestion].answer2.response) {
-        questionContainer.style.visibility = 'hidden';
-        result.textContent = qObject[currentQuestion].answer2.response;
-    } else {
-        setQuestion(qObject[currentQuestion].answer2.nextQuestion);
-        currentQuestion = qObject[currentQuestion].answer2.nextQuestion;
-    } 
-}
 
-startOver.onclick = function() {
-    questionContainer.style.visibility = "visible";
-    currentQuestion = "q1";
+
+
+$("#options button").click(function() {
+    answerHandler($('#options button').attr("value"))
+})
+
+
+$("#startOver").click(function() {
+    currentQuestion = 0;
     setQuestion(currentQuestion);
-}
+})
 
 /* option1.onclick = setQuestion(q2);
 option2.onclick = setQuestion(q3); */
