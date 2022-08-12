@@ -13,33 +13,19 @@
 
         <section id="plant-select">
             <h4>What kind of plant do you have?</h4>
-            <section id="plant-type-container">
-                <div class="plant-block" id="tropical">
-                    <span>Tropical</span>
-                    <img src="https://www.fillmurray.com/g/140/100">
-                </div>
-                <div class="plant-block" id="temperate">
-                    <span>Temperate</span>
-                    <img src="https://www.fillmurray.com/g/140/100">
-                </div>
-                <div class="plant-block" id="succulent">
-                    <span>Succulent</span>
-                    <img src="https://www.fillmurray.com/g/140/100">
-                </div>
-                <div class="plant-block" id="herb">
-                    <span>Herb</span>
-                    <img src="https://www.fillmurray.com/g/140/100">
-                </div>
-            </section>
+            <select name="plantType" id="plant-types">
+                <option value=0>Succulant</option>
+                <option value=1>Tropical</option>
+                <option value=2>Temperate</option>
+                <option value=3>Herb</option>
+              </select>
             <span id="declare-plant"></span>
         </section>
 
         <section id="question-set">
             <div id="stage">
                 <h4 id="question"></h4>
-                <button id="option1"></button>
-                <button id="option2"></button>
-                <p></p>
+                <p id="options"></p>
             </div>
         </section>
 
