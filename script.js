@@ -6,12 +6,30 @@ const question = document.getElementById('question');
 const startOver = document.getElementById("startOver");
 const plantSelect = document.getElementById("plant-select");
 //I can probably turn all these buttons into objects that hold plant type and then write one function about it.
-const tropicalButton = document.getElementById("tropical");
-const temperateButton = document.getElementById("temperate");
-const succulentButton = document.getElementById("succulent");
-const herbButton = document.getElementById("herb");
-const declarePlant = document.getElementById("declare-plant");
+
+// const tropicalButton = document.getElementById("tropical");
+// const temperateButton = document.getElementById("temperate");
+// const succulentButton = document.getElementById("succulent");
+// const herbButton = document.getElementById("herb");
+// const declarePlant = document.getElementById("declare-plant");
 let plantType = "";
+
+function createPlantType(plantType, waterNeeds, waterInstructions) {
+    return {
+        plantType: plantType,
+        waterNeeds: waterNeeds,
+        waterInstructions: waterInstructions,
+        getButton() {
+            return document.getElementById(plantType);
+        }
+    }
+}
+
+const tropical = createPlantType("tropical", "more", "Water when the top inch or two of potting mix is dry.",)
+const temperate = createPlantType("temperate", "more", "Water when the top 2-3 inches of potting mix are dry.")
+const succulent = createPlantType("succulent", "less", "Water when the potting mix is completely dry.")
+const herb = createPlantType("herb", "more","Water when the top 2-3 inches of potting mix are dry.")
+
 
 // q: {text: '', answer1: {text: '', nextQuestion: ''}, answer2: {text: '', nextQuestion: ''}},
 
@@ -68,6 +86,7 @@ function setQuestion(currentQuestion) {
     
   }
 
+
 function answerHandler(answer) {
     switch(currentQuestion) {
         case 0:
@@ -83,6 +102,7 @@ function answerHandler(answer) {
             }
     }
 }
+
 
 //I realize this isn't very dry, it's largely a proof of concept.
 
