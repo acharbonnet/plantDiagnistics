@@ -79,8 +79,8 @@ function setQuestion(currentQuestion) {
             for (button in buttonArray) {
                 $("#options").append("<button value="+button+">"+buttonArray[button]+"</button>")
             } 
-        default:
-            alert("I shouldn't be here!!!!")
+        // default:
+        //     alert("I shouldn't be here!!!!")
     }
 
     
@@ -103,8 +103,6 @@ function answerHandler(answer) {
     }
 }
 
-
-//I realize this isn't very dry, it's largely a proof of concept.
 
 
 
