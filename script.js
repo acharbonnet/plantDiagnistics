@@ -60,8 +60,11 @@ var qTexts = [
 ]
 
 
-var buttonArray = [
+var buttonArrayQ1 = [
     "Completely Dry", "Wet about an inch down", "Completely wet"
+]
+var buttonArrayQ2 = [
+    ""
 ]
 
 let currentQuestion = 0;
@@ -76,8 +79,8 @@ function setQuestion(currentQuestion) {
             $("#options").append("<button value=1>No</button>");
             break;
         case 1:
-            for (button in buttonArray) {
-                $("#options").append("<button value="+button+">"+buttonArray[button]+"</button>")
+            for (button in buttonArrayQ1) {
+                $("#options").append("<button value="+button+">"+buttonArrayQ1[button]+"</button>")
             } 
         // default:
         //     alert("I shouldn't be here!!!!")
@@ -99,6 +102,17 @@ function answerHandler(answer) {
                 currentQuestion++;
                 currentQuestion++;
                 setQuestion(currentQuestion);
+            }
+        case 1:
+            if (answer == 0) {
+                currentPlant.currentMoisture = 0;
+                currentQuestion++;
+                setQuestion(currentQuestion);
+            } if (answer == 1) {
+                currentPlant.currentMoisture = 1;
+                currentQuestion++;
+            } else {
+                
             }
     }
 }
